@@ -53,6 +53,15 @@ const books = [
 - Stampa in console ogni titolo nella console.
 */
 
+function somma(a, b) {
+  return a + b;
+}
+console.log(somma(2, 7));
+
+const longBooks = books.filter((book) => book.pages > 300);
+const longBooksTitles = longBooks.map((book) => book.title);
+longBooksTitles.forEach((title) => console.log(title));
+
 //TODO: Snack 2 - Il primo libro scontato
 /*
 - Creare un array (availableBooks) che contiene tutti i libri disponibili.
