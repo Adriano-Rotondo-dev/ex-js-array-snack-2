@@ -114,16 +114,39 @@ console.log("Autori adulti:", areAuthorsAdult);
 
 const ages = authors.map((author) => author.age);
 const agesSum = ages.reduce((sum, age) => sum + age, 0);
+const averageAge = agesSum / ages.length;
 
 console.log("Età degli autori:", ages);
 console.log("Somma dell'età degli autori:", agesSum);
+console.log("Media dell'età:", averageAge);
 
 //TODO: Snack 5 (Bonus) - Raccogli i libri
 /*
 //* Nota: a differenza di quanto visto finora negli esempi, per accedere all'API utilizzare l'url base: http://localhost:3333
-Usando la l'API http://localhost:3333/books/{id} usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
+Usando la l'API http://localhost:3333/books/{id} usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids),
+ritorna una promise che risolve un array di libri (books).
 Testala con l’array [2, 13, 7, 21, 19] .
 */
+
+function getBooks(ids) {
+  const requests = ids.map((id) => {
+    return fetch(`http://localhost:3333/books/${id}`).then((res) => {
+      if (!res) throw new Error(`Errore recupero libro con id ${id}`);
+      return res.json();
+    });
+  });
+  return Promise.all(requests);
+}
+
+const array = [2, 13, 7, 21, 19];
+
+getBooks(array)
+  .then((books) => {
+    console.log("Libri: ", books);
+  })
+  .catch((error) => {
+    console.error("Errore recupero libri ", error);
+  });
 
 //TODO: Snack 6 (Bonus) -  Ordina i libri
 /*
