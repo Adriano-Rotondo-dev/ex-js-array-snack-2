@@ -92,6 +92,19 @@ console.log(fullPricedBook);
 (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
 */
 
+const authors = books.filter((book) => book.author);
+console.log(authors);
+const areAuthorsAdult = authors.every((author) => author.age >= 18);
+authors.sort((a, b) => {
+  if (areAuthorsAdult) {
+    return a.age - b.age;
+  } else {
+    return b.age - a.age;
+  }
+});
+console.log("Autori:", authors);
+console.log("Autori adulti:", areAuthorsAdult);
+
 //TODO: Snack 4 - Calcola l’età media
 /*
 - Creare un array (ages) che contiene le età degli autori dei libri.
