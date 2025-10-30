@@ -69,6 +69,21 @@ longBooksTitles.forEach((title) => console.log(title));
 - Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
 */
 
+const availableBooks = books.filter((book) => book.available === true);
+const discountedBooks = availableBooks.map((book) => {
+  const price = parseFloat(book.price.replace("€", ""));
+  const discountPrice = (price * 0.8).toFixed(2);
+  return {
+    ...book,
+    price: `${discountPrice}€`,
+  };
+});
+const fullPricedBook = discountedBooks.find((book) => {
+  const price = parseFloat(book.price.replace("€", ""));
+  return price % 1 === 0;
+});
+console.log(fullPricedBook);
+
 //TODO: Snack 3 - Ordinare gli Autori
 /*
 - Creare un array (authors) che contiene gli autori dei libri.
