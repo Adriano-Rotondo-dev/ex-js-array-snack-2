@@ -92,7 +92,7 @@ console.log(fullPricedBook);
 (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
 */
 
-const authors = books.filter((book) => book.author);
+const authors = books.map((book) => book.author);
 console.log(authors);
 const areAuthorsAdult = authors.every((author) => author.age >= 18);
 authors.sort((a, b) => {
@@ -111,6 +111,12 @@ console.log("Autori adulti:", areAuthorsAdult);
 - Calcola la somma delle età (agesSum) usando reduce.
 - Stampa in console l’età media degli autori dei libri. 
 */
+
+const ages = authors.map((author) => author.age);
+const agesSum = ages.reduce((sum, age) => sum + age, 0);
+
+console.log("Età degli autori:", ages);
+console.log("Somma dell'età degli autori:", agesSum);
 
 //TODO: Snack 5 (Bonus) - Raccogli i libri
 /*
