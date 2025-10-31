@@ -155,6 +155,20 @@ getBooks(array)
 - Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
 */
 
+const areThereAvaiableBooks = books.some((book) => book.available === true);
+//! creando un nuovo array con lo spread di books evito di andare a modificare anche l'array originale
+const booksByPrice = [...books].sort((a, b) => {
+  const priceA = parseFloat(a.price.replace("€", ""));
+  const priceB = parseFloat(b.price.replace("€", ""));
+  return priceA - priceB;
+});
+booksByPrice.sort((a, b) => {
+  if (a.available === b.available) return 0; //se sono uguali torna 0
+  return a.available ? -1 : 1; //altrimenti controlla se a is available. se disponibile torna -1, altrimenti 1
+});
+
+console.log("Price sorted:", booksByPrice);
+
 //TODO: Snack 7 (Bonus) -  Analizza i tag
 /*
 - Usa reduce per creare un oggetto (tagCounts) che conta quante volte ogni tag viene usato tra i libri.
